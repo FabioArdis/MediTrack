@@ -6,9 +6,15 @@
 class LoginFrame : public wxFrame
 {
 public:
-	LoginFrame(const wxString& title);
-
 	wxPanel* m_parent;
+
+	LoginFrame(const wxString& title);
+	void OnLogin(wxCommandEvent& event);
+
+private:
+	wxTextCtrl* usernameTextCtrl;
+	wxTextCtrl* passwordTextCtrl;
+	wxButton* loginButton;
 };
 
 #endif // !LOGINFRAME_HPP
