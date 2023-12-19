@@ -43,6 +43,7 @@ void LoginFrame::OnLogin(wxCommandEvent& event)
 
 	if (check)
 	{
+		loggedIn = true;
 		wxCommandEvent newEvent(LOGIN_SUCCESS_EVENT);
 		wxPostEvent(wxTheApp, newEvent);
 		this->Close();
@@ -53,6 +54,11 @@ void LoginFrame::OnLogin(wxCommandEvent& event)
 
 void LoginFrame::OnClose(wxCloseEvent& event)
 {
-	wxTheApp->Exit();
-	event.Skip();
+	if (loggedIn)
+		this->Destroy();
+	else
+	{
+		wxTheApp->Exit();
+		event.Skip();
+	}
 }
