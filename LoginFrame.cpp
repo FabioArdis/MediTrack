@@ -4,9 +4,12 @@
 #include <wx/statline.h>
 #include "bcrypt.h"
 #include "UserDAO.hpp"
+#include "MediTrack.h"
 
 LoginFrame::LoginFrame(const wxString& title) : wxFrame(NULL, wxID_ANY, title, wxDefaultPosition, wxSize(300, 200))
 {
+	Bind(wxEVT_CLOSE_WINDOW, &LoginFrame::OnClose, this);
+
 	m_parent = new wxPanel(this, wxID_ANY);
 
 	wxBoxSizer* vBox = new wxBoxSizer(wxVERTICAL);
@@ -39,7 +42,17 @@ void LoginFrame::OnLogin(wxCommandEvent& event)
 	bool check = (UserDAO::getInstance()->authUser(username.ToStdString(), password.ToStdString()));
 
 	if (check)
+	{
+		wxCommandEvent newEvent(LOGIN_SUCCESS_EVENT);
+		wxPostEvent(wxTheApp, newEvent);
 		this->Close();
+	}
 	else
 		wxMessageBox(wxT("Email o password sbagliata. Riprova"));
+}
+
+void LoginFrame::OnClose(wxCloseEvent& event)
+{
+	wxTheApp->Exit();
+	event.Skip();
 }

@@ -10,7 +10,7 @@ public:
 
 	LoginFrame(const wxString& title);
 	void OnLogin(wxCommandEvent& event);
-
+	void OnClose(wxCloseEvent& event);
 private:
 	wxTextCtrl* usernameTextCtrl;
 	wxTextCtrl* passwordTextCtrl;
