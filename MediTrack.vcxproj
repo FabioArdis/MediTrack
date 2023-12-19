@@ -139,17 +139,23 @@
     <ClCompile Include="blowfish.cpp" />
     <ClCompile Include="LoginFrame.cpp" />
     <ClCompile Include="MainFrame.cpp" />
+    <ClCompile Include="Medicine.cpp" />
     <ClCompile Include="MediTrack.cpp" />
+    <ClCompile Include="Plan.cpp" />
+    <ClCompile Include="User.cpp" />
+    <ClCompile Include="UserDAO.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bcrypt.h" />
     <ClInclude Include="LoginFrame.hpp" />
     <ClInclude Include="MainFrame.h" />
+    <ClInclude Include="Medicine.hpp" />
     <ClInclude Include="MediTrack.h" />
     <ClInclude Include="node_blf.h" />
     <ClInclude Include="openbsd.h" />
     <ClInclude Include="Plan.hpp" />
     <ClInclude Include="User.hpp" />
+    <ClInclude Include="UserDAO.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
