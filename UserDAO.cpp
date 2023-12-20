@@ -4,6 +4,15 @@
 UserDAO* UserDAO::instance = nullptr;
 unsigned int UserDAO::nextUserId = 1;
 
+User* UserDAO::getUser()
+{
+	if (this->testUser == nullptr)
+	{
+		testUser = new User("TestName", "TestSurname", "a", "$2a$10$tyGozBhl7eajm5QwP4K9XeDosk8ROWKM1iHsN1ZuwRhlld6Ko7fiq", "2002-11-15");
+	}
+	return testUser;
+}
+
 UserDAO* UserDAO::getInstance()
 {
 	if (instance == nullptr)

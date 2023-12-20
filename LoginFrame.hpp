@@ -14,7 +14,7 @@ public:
 	void OnLogin(wxCommandEvent& event);
 	void OnClose(wxCloseEvent& event);
 private:
-	wxTextCtrl* usernameTextCtrl;
+	wxTextCtrl* emailTextCtrl;
 	wxTextCtrl* passwordTextCtrl;
 	wxButton* loginButton;
 };

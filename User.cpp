@@ -10,7 +10,22 @@ const std::string& User::getHashedPassword() const
     return hashedPassword;
 }
 
+void User::addPlan(Plan& plan)
+{
+    plans.push_back(plan);
+}
+
 const std::string& User::getEmail() const
 {
     return email;
+}
+
+const std::string User::getFullName() const
+{
+    return (name + " " + surname);
+}
+
+const std::vector<Plan> User::getPlans() const
+{
+    return plans;
 }

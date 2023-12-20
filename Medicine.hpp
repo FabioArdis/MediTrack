@@ -13,6 +13,7 @@ private:
 		batchNo, expirationTime;
 
 public:
+	Medicine();
 	std::vector<std::string> getInfo() const;
 	std::string getInfo(std::string info) const;
 

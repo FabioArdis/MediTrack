@@ -23,8 +23,11 @@ public:
 	}
 
 	void Update();
+	void addPlan(Plan& plan);
 
 	const std::string& getHashedPassword() const;
 	const std::string& getEmail() const;
+	const std::string getFullName() const;
+	const std::vector<Plan> getPlans() const;
 };
 #endif // !USER_HPP
