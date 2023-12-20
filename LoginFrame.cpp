@@ -8,6 +8,8 @@
 
 LoginFrame::LoginFrame(const wxString& title) : wxFrame(NULL, wxID_ANY, title, wxDefaultPosition, wxSize(300, 200))
 {
+	this->SetMinSize(wxSize(300, 200));
+	this->SetMaxSize(wxSize(300, 200));
 	Bind(wxEVT_CLOSE_WINDOW, &LoginFrame::OnClose, this);
 
 	m_parent = new wxPanel(this, wxID_ANY);

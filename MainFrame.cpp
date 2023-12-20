@@ -6,6 +6,8 @@
 
 MainFrame::MainFrame(const wxString& title) : wxFrame(NULL, wxID_ANY, title, wxDefaultPosition, wxSize(500, 300))
 {
+	this->SetMinSize(wxSize(500, 300));
+	this->SetMaxSize(wxSize(500, 300));
 	m_parent = new wxPanel(this, wxID_ANY);
 	Medicine testMedicine;
 	std::vector<Medicine> testVectorMedicines;
