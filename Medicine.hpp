@@ -8,7 +8,7 @@
 class Medicine
 {
 private:
-	unsigned const int id;
+	unsigned int id;
 	std::string name, dosage, manufacturer,
 		batchNo, expirationTime;
 
