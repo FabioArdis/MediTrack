@@ -16,11 +16,7 @@ MainFrame::MainFrame(const wxString& title) : wxFrame(NULL, wxID_ANY, title, wxD
 	m_plans = m_user->getPlans();
 	wxArrayString a_plansName;
 
-<<<<<<< HEAD
 	m_mediator = new PlanUpdater(this, m_planFrame);
-=======
-	m_mediator = new PlanUpdater(this);
->>>>>>> ca6e164 (Il file MainFrame.cpp è stato aggiornatoper utilizzare un oggetto Plan senza inizializzarlo con un vettore di Medicine. È stato aggiunto un PlanUpdater, nuovi pulsanti e una casella di lista al frame. È stata aggiunta una connessione agli eventi per il pulsante "addButton" con un nuovo metodo onAdd in MainFrame.cpp. Sono stati aggiunti al progetto i file PlanFrame.cpp, Mediator.cpp, PlanFrame.hpp e Mediator.hpp. È stato aggiunto un costruttore predefinito alla classe Plan in Plan.cpp e Plan.hpp. Sono state aggiunte nuove classi Mediator e PlanUpdater in Mediator.cpp e Mediator.hpp. Infine, è stata aggiunta una nuova classe PlanFrame in PlanFrame.cpp e PlanFrame.hpp.)
 
 	for (auto i : m_plans)
 		a_plansName.Add(i.getName());
@@ -83,11 +79,7 @@ void MainFrame::onEdit(wxCommandEvent& event)
 	{
 		if (i.getName() == plansList->GetString(index))
 		{
-<<<<<<< HEAD
 			m_planFrame = new PlanFrame(wxT("Aggiungi o modifica piano"), i, m_mediator);
-=======
-			m_planFrame = new PlanFrame(wxT("Aggiungi o modifica piano"), i);
->>>>>>> ca6e164 (Il file MainFrame.cpp è stato aggiornatoper utilizzare un oggetto Plan senza inizializzarlo con un vettore di Medicine. È stato aggiunto un PlanUpdater, nuovi pulsanti e una casella di lista al frame. È stata aggiunta una connessione agli eventi per il pulsante "addButton" con un nuovo metodo onAdd in MainFrame.cpp. Sono stati aggiunti al progetto i file PlanFrame.cpp, Mediator.cpp, PlanFrame.hpp e Mediator.hpp. È stato aggiunto un costruttore predefinito alla classe Plan in Plan.cpp e Plan.hpp. Sono state aggiunte nuove classi Mediator e PlanUpdater in Mediator.cpp e Mediator.hpp. Infine, è stata aggiunta una nuova classe PlanFrame in PlanFrame.cpp e PlanFrame.hpp.)
 			m_planFrame->Show(true);
 		}
 	}
