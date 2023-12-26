@@ -18,6 +18,8 @@ MainFrame::MainFrame(const wxString& title) : wxFrame(NULL, wxID_ANY, title, wxD
 	std::vector<Plan> m_plans = m_user->getPlans();
 	wxArrayString a_plansName;
 
+	m_mediator = new PlanUpdater(this, m_planFrame);
+
 	for (auto i : m_plans)
 		a_plansName.Add(i.getName());
 
@@ -55,4 +57,24 @@ MainFrame::MainFrame(const wxString& title) : wxFrame(NULL, wxID_ANY, title, wxD
 	m_parent->SetSizer(mainSizer);
 
 	this->Centre();
+}
+
+void MainFrame::onAdd(wxCommandEvent& event)
+{
+	Plan newPlan("Nuovo Piano" + std::to_string(m_plans.size()));
+	m_plans.push_back(newPlan);
+	m_mediator->updateListBox(newPlan.getName());
+}
+
+void MainFrame::onEdit(wxCommandEvent& event)
+{
+	int index = plansList->GetSelection();
+	for (auto i : m_plans)
+	{
+		if (i.getName() == plansList->GetString(index))
+		{
+			m_planFrame = new PlanFrame(wxT("Aggiungi o modifica piano"), i, m_mediator);
+			m_planFrame->Show(true);
+		}
+	}
 }
