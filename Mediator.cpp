@@ -24,6 +24,8 @@ void PlanUpdater::update(MainFrame* mF)
 
 	for (auto& i : m_mF->m_user->plans)
 		m_mF->plansList->Append(i.getName());
+
+	m_mF->plansList->SetSelection(index);
 }
 
 void PlanUpdater::update(PlanFrame* pF)
