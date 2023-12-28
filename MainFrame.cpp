@@ -10,16 +10,13 @@ MainFrame::MainFrame(const wxString& title) : wxFrame(NULL, wxID_ANY, title, wxD
 	this->SetMaxSize(wxSize(500, 300));
 	m_parent = new wxPanel(this, wxID_ANY);
 
-	Plan testPlan;
-	m_user->addPlan(testPlan);
-
-	m_plans = m_user->getPlans();
+	m_plans = &m_user->plans;
 	wxArrayString a_plansName;
 
 	m_mediator = new PlanUpdater(this, m_planFrame);
 
-	for (auto i : m_plans)
-		a_plansName.Add(i.getName());
+	for (auto i = m_plans->begin(); i != m_plans->end(); i++)
+		a_plansName.Add(i->getName());
 
 	wxBoxSizer* mainSizer = new wxBoxSizer(wxHORIZONTAL);
 	wxBoxSizer* plansSizer = new wxBoxSizer(wxVERTICAL);
@@ -67,19 +64,19 @@ MainFrame::MainFrame(const wxString& title) : wxFrame(NULL, wxID_ANY, title, wxD
 
 void MainFrame::onAdd(wxCommandEvent& event)
 {
-	Plan newPlan("Nuovo Piano" + std::to_string(m_plans.size()));
-	m_plans.push_back(newPlan);
+	Plan newPlan("Nuovo Piano" + std::to_string(m_plans->size()));
+	m_plans->push_back(newPlan);
 	m_mediator->updateListBox(newPlan.getName());
 }
 
 void MainFrame::onEdit(wxCommandEvent& event)
 {
 	int index = plansList->GetSelection();
-	for (auto i : m_plans)
+	for (auto i = m_plans->begin(); i != m_plans->end(); i++)
 	{
-		if (i.getName() == plansList->GetString(index))
+		if (i->getName() == plansList->GetString(index))
 		{
-			m_planFrame = new PlanFrame(wxT("Aggiungi o modifica piano"), i, m_mediator);
+			m_planFrame = new PlanFrame(wxT("Aggiungi o modifica piano"), *i, m_mediator);
 			m_planFrame->Show(true);
 		}
 	}

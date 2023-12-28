@@ -14,6 +14,7 @@ public:
 	Plan();
 	Plan(std::string name);
 	Plan(std::string name, std::vector<Medicine>& meds) : name(name), meds(meds) {}
+	void addMed(Medicine& med);
 	std::string getName() const;
 	std::vector<Medicine> getMeds() const;
 };

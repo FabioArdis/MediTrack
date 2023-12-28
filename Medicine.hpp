@@ -5,6 +5,8 @@
 #include <string>
 #include <chrono>
 
+unsigned static IDs = 0;
+
 class Medicine
 {
 private:
@@ -14,6 +16,7 @@ private:
 
 public:
 	Medicine();
+	Medicine(std::string name);
 	std::vector<std::string> getInfo() const;
 	std::string getInfo(std::string info) const;
 

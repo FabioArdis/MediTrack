@@ -14,7 +14,7 @@ public:
 
 	PlanUpdater* m_mediator;
 
-	Plan m_plan;
+	Plan& m_plan;
 
 	wxListBox* medsList;
 
@@ -27,6 +27,11 @@ public:
 	wxTextCtrl* medNotesCtrl;
 
 	void OnListBoxSelection(wxCommandEvent& event);
+	void OnClickAddMed(wxCommandEvent& event);
+
+private:
+	wxButton* addMedBtn;
+	wxButton* updatePlanBtn;
 };
 
 #endif // !PLANFRAME_HPP

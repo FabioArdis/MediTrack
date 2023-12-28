@@ -25,11 +25,16 @@ PlanFrame::PlanFrame(const wxString& title, Plan& plan, PlanUpdater* mediator) :
 	medManuCtrl = new wxTextCtrl(m_parent, wxID_ANY, "Manufacturer", wxPoint(50, 50));
 	medBatchCtrl = new wxTextCtrl(m_parent, wxID_ANY, "Batch number", wxPoint(50, 50));
 	medExpCtrl = new wxTextCtrl(m_parent, wxID_ANY, "Expiration time", wxPoint(50, 50));
-	medNotesCtrl = new wxTextCtrl(m_parent, wxID_ANY, "Aggiungi delle note...", wxPoint(50, 50));
+	medNotesCtrl = new wxTextCtrl(m_parent, wxID_ANY, "Aggiungi delle note...", wxPoint(50, 50), wxDefaultSize, wxTE_MULTILINE);
 
 	medsList = new wxListBox(m_parent, wxID_ANY, wxPoint(50, 50), wxSize(100, -1), a_medsName);
 
 	medsList->Bind(wxEVT_LISTBOX, &PlanFrame::OnListBoxSelection, this);
+
+	addMedBtn = new wxButton(m_parent, wxID_ANY, "Aggiungi medicinale", wxPoint(50, 100));
+	updatePlanBtn = new wxButton(m_parent, wxID_ANY, "Aggiorna il piano ed esci", wxPoint(50, 100));
+
+	addMedBtn->Bind(wxEVT_BUTTON, &PlanFrame::OnClickAddMed, this);
 
 	mainSizer->Add(medicineSizer, 1, wxEXPAND | wxALL, 5);
 	mainSizer->Add(new wxStaticLine(m_parent, wxID_ANY, wxPoint(25, 50), wxSize(1, 300)), 0, wxEXPAND | wxALL, 5);
@@ -43,8 +48,8 @@ PlanFrame::PlanFrame(const wxString& title, Plan& plan, PlanUpdater* mediator) :
 	medicineSizer->Add(medsList, 1, wxEXPAND | wxALL, 5);
 	medicineSizer->Add(buttonSizer, 0, wxEXPAND | wxALL, 5);
 
-	buttonSizer->Add(new wxButton(m_parent, wxID_ANY, "Aggungi", wxPoint(50, 100)), 1, wxEXPAND | wxALL, 5);
-	buttonSizer->Add(new wxButton(m_parent, wxID_ANY, "Esci e aggiorna piano", wxPoint(50, 100)), 1, wxEXPAND | wxALL, 5);
+	buttonSizer->Add(addMedBtn, 1, wxEXPAND | wxALL, 5);
+	buttonSizer->Add(updatePlanBtn, 1, wxEXPAND | wxALL, 5);
 
 	infoSizer->Add(new wxStaticText(m_parent, wxID_ANY, "Cerca farmaco", wxPoint(50, 50)), 0, wxEXPAND | wxALL, 5);
 	infoSizer->Add(new wxTextCtrl(m_parent, wxID_ANY, "Nome farmaco", wxPoint(50, 50)), 0, wxEXPAND | wxALL, 5);
@@ -77,5 +82,10 @@ void PlanFrame::OnListBoxSelection(wxCommandEvent& event)
 {
 	m_mediator->update(this);
 }
-=======
->>>>>>> ca6e164 (Il file MainFrame.cpp � stato aggiornatoper utilizzare un oggetto Plan senza inizializzarlo con un vettore di Medicine. � stato aggiunto un PlanUpdater, nuovi pulsanti e una casella di lista al frame. � stata aggiunta una connessione agli eventi per il pulsante "addButton" con un nuovo metodo onAdd in MainFrame.cpp. Sono stati aggiunti al progetto i file PlanFrame.cpp, Mediator.cpp, PlanFrame.hpp e Mediator.hpp. � stato aggiunto un costruttore predefinito alla classe Plan in Plan.cpp e Plan.hpp. Sono state aggiunte nuove classi Mediator e PlanUpdater in Mediator.cpp e Mediator.hpp. Infine, � stata aggiunta una nuova classe PlanFrame in PlanFrame.cpp e PlanFrame.hpp.)
+
+void PlanFrame::OnClickAddMed(wxCommandEvent& event)
+{
+	Medicine testMedicine;
+	m_plan.addMed(testMedicine);
+	m_mediator->update(this);
+}

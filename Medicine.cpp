@@ -2,13 +2,23 @@
 
 #include "Medicine.hpp"
 
-Medicine::Medicine() : id(1)
+Medicine::Medicine()
 {
-	name = "TestMedicine";
-	dosage = "TestDosage";
-	manufacturer = "TestManufacturer";
-	batchNo = "TestBatchNo";
-	expirationTime = "TestExpirationTime";
+	id = IDs++;
+	name = "Medicine" + std::to_string(id);
+	dosage = "Insert dosage...";
+	manufacturer = "Insert manufacturer...";
+	batchNo = "Insert batch number...";
+	expirationTime = "Insert expiration time...";
+}
+
+Medicine::Medicine(std::string name) : name(name)
+{
+	id = IDs++;
+	dosage = "Insert dosage...";
+	manufacturer = "Insert manufacturer...";
+	batchNo = "Insert batch number...";
+	expirationTime = "Insert expiration time...";
 }
 
 std::vector<std::string> Medicine::getInfo() const

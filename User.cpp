@@ -25,7 +25,7 @@ const std::string User::getFullName() const
     return (name + " " + surname);
 }
 
-const std::vector<Plan> User::getPlans() const
+std::vector<Plan> User::getPlans()
 {
     return plans;
 }

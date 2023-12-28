@@ -26,7 +26,7 @@ public:
 	void onEdit(wxCommandEvent& event);
 
 private:
-	std::vector<Plan> m_plans;
+	std::vector<Plan>* m_plans;
 
 	wxButton* addButton;
 	wxButton* editButton;

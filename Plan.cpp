@@ -3,15 +3,21 @@
 Plan::Plan()
 {
 	name = "PlanName";
-	Medicine prova;
-	meds.push_back(prova);
+	if (meds.empty())
+	{
+		Medicine testMedicine;
+		meds.push_back(testMedicine);
+	}
 }
 
 Plan::Plan(std::string name)
 {
 	this->name = name;
-	Medicine prova;
-	meds.push_back(prova);
+}
+
+void Plan::addMed(Medicine& med)
+{
+	meds.push_back(med);
 }
 
 std::string Plan::getName() const
