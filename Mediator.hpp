@@ -23,8 +23,6 @@ public:
 	void update() override;
 	void update(MainFrame* mF);
 	void update(PlanFrame* pF);
-	void updateAll();
-	void updateListBox(const wxString& str);
 };
 
 #endif // !MEDIATOR_HPP

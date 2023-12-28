@@ -41,7 +41,7 @@ void PlanUpdater::update(PlanFrame* pF)
 
 	for (auto i : m_pF->m_plan.getMeds())
 	{
-		m_pF->medsList->Append(i.getInfo("name"));
+		m_pF->medsList->Append(i->getInfo(MedInfo::NAME));
 	}
 
 	m_pF->medsList->SetSelection(index);
@@ -49,24 +49,15 @@ void PlanUpdater::update(PlanFrame* pF)
 	{
 		for (auto i : m_pF->m_plan.getMeds())
 		{
-			if (i.getInfo("name") == m_pF->medsList->GetString(index))
+			if (i->getInfo(MedInfo::NAME) == m_pF->medsList->GetString(index))
 			{
-				m_pF->medNameCtrl->SetValue(i.getInfo("name"));
-				m_pF->medDosageCtrl->SetValue(i.getInfo("dosage"));
-				m_pF->medManuCtrl->SetValue(i.getInfo("manufacturer"));
-				m_pF->medBatchCtrl->SetValue(i.getInfo("batchNo"));
-				m_pF->medExpCtrl->SetValue(i.getInfo("expirationTime"));
+				m_pF->medNameCtrl->SetValue(i->getInfo(MedInfo::NAME));
+				m_pF->medDosageCtrl->SetValue(i->getInfo(MedInfo::DSGE));
+				m_pF->medManuCtrl->SetValue(i->getInfo(MedInfo::MNFC));
+				m_pF->medBatchCtrl->SetValue(i->getInfo(MedInfo::BTNO));
+				m_pF->medExpCtrl->SetValue(i->getInfo(MedInfo::EXPT));
+				m_pF->medNotesCtrl->SetValue(i->getInfo(MedInfo::NOTE));
 			}
 		}
 	}
-}
-
-void PlanUpdater::updateAll()
-{
-}
-
-void PlanUpdater::updateListBox(const wxString& str)
-{
-	/*m_mF->plansList->Clear();
-	m_mF->plansList->Append(str);*/
 }

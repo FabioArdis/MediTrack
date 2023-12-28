@@ -10,6 +10,7 @@ Medicine::Medicine()
 	manufacturer = "Insert manufacturer...";
 	batchNo = "Insert batch number...";
 	expirationTime = "Insert expiration time...";
+	notes = "Insert notes....";
 }
 
 Medicine::Medicine(std::string name) : name(name)
@@ -19,6 +20,41 @@ Medicine::Medicine(std::string name) : name(name)
 	manufacturer = "Insert manufacturer...";
 	batchNo = "Insert batch number...";
 	expirationTime = "Insert expiration time...";
+	notes = "Insert notes....";
+}
+
+void Medicine::setInfo(std::vector<std::string> data)
+{
+	/*
+	* a sto punto ha più senso usare un costruttore di copia, no?
+	*/
+}
+
+void Medicine::setInfo(MedInfo info, std::string data)
+{
+	switch (info)
+	{
+	case MedInfo::NAME:
+		name = data;
+		break;
+	case MedInfo::DSGE:
+		dosage = data;
+		break;
+	case MedInfo::MNFC:
+		manufacturer = data;
+		break;
+	case MedInfo::BTNO:
+		batchNo = data;
+		break;
+	case MedInfo::EXPT:
+		expirationTime = data;
+		break;
+	case MedInfo::NOTE:
+		notes = data;
+		break;
+	default:
+		throw std::invalid_argument("Invalid argument");
+	}
 }
 
 std::vector<std::string> Medicine::getInfo() const
@@ -30,22 +66,34 @@ std::vector<std::string> Medicine::getInfo() const
 	info.push_back(manufacturer);
 	info.push_back(batchNo);
 	info.push_back(expirationTime);
+	info.push_back(notes);
 
 	return info;
 }
 
-std::string Medicine::getInfo(std::string info) const
+std::string Medicine::getInfo(MedInfo info) const
 {
-	if (info == "name")
+	switch (info)
+	{
+	case MedInfo::NAME:
 		return name;
-	else if (info == "dosage")
+		break;
+	case MedInfo::DSGE:
 		return dosage;
-	else if (info == "manufacturer")
+		break;
+	case MedInfo::MNFC:
 		return manufacturer;
-	else if (info == "batchNo")
+		break;
+	case MedInfo::BTNO:
 		return batchNo;
-	else if (info == "expirationTime")
+		break;
+	case MedInfo::EXPT:
 		return expirationTime;
-
-	throw std::invalid_argument("Invalid argument: " + info);
+		break;
+	case MedInfo::NOTE:
+		return notes;
+		break;
+	default:
+		throw std::invalid_argument("Invalid argument");
+	}
 }

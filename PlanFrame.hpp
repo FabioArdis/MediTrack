@@ -19,6 +19,9 @@ public:
 	wxListBox* medsList;
 
 	wxTextCtrl* planNameCtrl;
+	wxTextCtrl* planLengthCtrl;
+	wxTextCtrl* planTypeCtrl;
+
 	wxTextCtrl* medNameCtrl;
 	wxTextCtrl* medDosageCtrl;
 	wxTextCtrl* medManuCtrl;
@@ -29,10 +32,12 @@ public:
 	void OnListBoxSelection(wxCommandEvent& event);
 	void OnClickAddMed(wxCommandEvent& event);
 	void OnClickUpdPlan(wxCommandEvent& event);
+	void OnClickUpdMed(wxCommandEvent& event);
 
 private:
 	wxButton* addMedBtn;
 	wxButton* updatePlanBtn;
+	wxButton* updateMedBtn;
 };
 
 #endif // !PLANFRAME_HPP

@@ -2,6 +2,7 @@
 #include <wx/spinctrl.h>
 #include <wx/statline.h>
 #include "MainFrame.h"
+#include "FormDialog.hpp"
 
 
 MainFrame::MainFrame(const wxString& title) : wxFrame(NULL, wxID_ANY, title, wxDefaultPosition, wxSize(500, 300))
@@ -64,9 +65,45 @@ MainFrame::MainFrame(const wxString& title) : wxFrame(NULL, wxID_ANY, title, wxD
 
 void MainFrame::onAdd(wxCommandEvent& event)
 {
-	Plan newPlan("Nuovo Piano" + std::to_string(m_plans->size()));
-	m_plans->push_back(newPlan);
-	m_mediator->update(this);
+	FormDialog dialog(this, wxID_ANY, wxT("Insert data"));
+
+	if (dialog.ShowModal() == wxID_OK)
+	{
+		ConfirmFormDialog confirmDialog(this, wxID_ANY, wxT("Continue?"));
+
+		if (confirmDialog.ShowModal() == wxID_OK)
+		{
+			std::string name = dialog.GetNameValue();
+			std::string length = dialog.GetLengthValue();
+			std::string type = dialog.GetTypeValue();
+
+			Plan newPlan(name, length, type);
+			m_plans->push_back(newPlan);
+			m_mediator->update(this);
+
+			for (auto i = m_plans->begin(); i != m_plans->end(); i++)
+			{
+				if (i->getName() == name)
+				{
+					m_planFrame = new PlanFrame(this, wxT("Aggiungi o modifica piano"), *i, m_mediator);
+					m_planFrame->Show(true);
+				}
+			}
+		}
+		else
+		{
+			std::string name = dialog.GetNameValue();
+			std::string length = dialog.GetLengthValue();
+			std::string type = dialog.GetTypeValue();
+
+			Plan newPlan(name, length, type);
+			m_plans->push_back(newPlan);
+			m_mediator->update(this);
+		}
+	}
+	/*Plan newPlan("Nuovo Piano" + std::to_string(m_plans->size()));
+	m_plans->push_back(newPlan);*/
+	
 }
 
 void MainFrame::onEdit(wxCommandEvent& event)
