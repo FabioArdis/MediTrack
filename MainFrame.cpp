@@ -66,7 +66,7 @@ void MainFrame::onAdd(wxCommandEvent& event)
 {
 	Plan newPlan("Nuovo Piano" + std::to_string(m_plans->size()));
 	m_plans->push_back(newPlan);
-	m_mediator->updateListBox(newPlan.getName());
+	m_mediator->update(this);
 }
 
 void MainFrame::onEdit(wxCommandEvent& event)
@@ -76,7 +76,7 @@ void MainFrame::onEdit(wxCommandEvent& event)
 	{
 		if (i->getName() == plansList->GetString(index))
 		{
-			m_planFrame = new PlanFrame(wxT("Aggiungi o modifica piano"), *i, m_mediator);
+			m_planFrame = new PlanFrame(this, wxT("Aggiungi o modifica piano"), *i, m_mediator);
 			m_planFrame->Show(true);
 		}
 	}

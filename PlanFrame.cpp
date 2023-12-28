@@ -2,7 +2,7 @@
 #include <wx/statline.h>
 #include "PlanFrame.hpp"
 
-PlanFrame::PlanFrame(const wxString& title, Plan& plan, PlanUpdater* mediator) : wxFrame(NULL, wxID_ANY, title, wxDefaultPosition, wxSize(600, 700)), m_plan(plan), m_mediator(mediator)
+PlanFrame::PlanFrame(wxFrame* parent, const wxString& title, Plan& plan, PlanUpdater* mediator) : wxFrame(parent, wxID_ANY, title, wxDefaultPosition, wxSize(600, 700)), m_plan(plan), m_mediator(mediator)
 {
 	this->SetMinSize(wxSize(600, 700));
 	this->SetMaxSize(wxSize(600, 700));
@@ -35,6 +35,7 @@ PlanFrame::PlanFrame(const wxString& title, Plan& plan, PlanUpdater* mediator) :
 	updatePlanBtn = new wxButton(m_parent, wxID_ANY, "Aggiorna il piano ed esci", wxPoint(50, 100));
 
 	addMedBtn->Bind(wxEVT_BUTTON, &PlanFrame::OnClickAddMed, this);
+	updatePlanBtn->Bind(wxEVT_BUTTON, &PlanFrame::OnClickUpdPlan, this);
 
 	mainSizer->Add(medicineSizer, 1, wxEXPAND | wxALL, 5);
 	mainSizer->Add(new wxStaticLine(m_parent, wxID_ANY, wxPoint(25, 50), wxSize(1, 300)), 0, wxEXPAND | wxALL, 5);
@@ -88,4 +89,11 @@ void PlanFrame::OnClickAddMed(wxCommandEvent& event)
 	Medicine testMedicine;
 	m_plan.addMed(testMedicine);
 	m_mediator->update(this);
+}
+
+void PlanFrame::OnClickUpdPlan(wxCommandEvent& event)
+{
+	m_plan.setName(planNameCtrl->GetValue().ToStdString());
+	m_mediator->update();
+	this->Hide();
 }

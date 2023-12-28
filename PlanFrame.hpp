@@ -8,7 +8,7 @@
 class PlanFrame : public wxFrame
 {
 public:
-	PlanFrame(const wxString& title, Plan& plan, PlanUpdater* mediator);
+	PlanFrame(wxFrame* parent, const wxString& title, Plan& plan, PlanUpdater* mediator);
 
 	wxPanel* m_parent;
 
@@ -28,6 +28,7 @@ public:
 
 	void OnListBoxSelection(wxCommandEvent& event);
 	void OnClickAddMed(wxCommandEvent& event);
+	void OnClickUpdPlan(wxCommandEvent& event);
 
 private:
 	wxButton* addMedBtn;
