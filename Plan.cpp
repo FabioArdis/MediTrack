@@ -20,6 +20,11 @@ void Plan::addMed(Medicine& med)
 	meds.push_back(med);
 }
 
+void Plan::setName(std::string name)
+{
+	this->name = name;
+}
+
 std::string Plan::getName() const
 {
 	return name;
