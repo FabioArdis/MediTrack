@@ -16,6 +16,8 @@ private:
 	UserDAO() {}
 
 public:
+	User* getUser();
+
 	static UserDAO* getInstance();
 
 	/*

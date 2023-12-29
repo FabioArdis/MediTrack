@@ -4,6 +4,7 @@
 #include <string>
 #include <chrono>
 #include "UserDAO.hpp"
+#include "Plan.hpp"
 
 class User
 {
@@ -13,6 +14,8 @@ private:
 	std::chrono::system_clock::time_point registrationTime, lastAccess;
 
 public:
+	std::vector<Plan> plans;
+
 	User(const std::string& name, const std::string& surname, const std::string& email, const std::string& hashedPassword, const std::string& birthDate)
 		: id(UserDAO::getInstance()->getNextUserId()), name(name), surname(surname), email(email), hashedPassword(hashedPassword), birthDate(birthDate)
 	{
@@ -21,8 +24,11 @@ public:
 	}
 
 	void Update();
+	void addPlan(Plan& plan);
 
 	const std::string& getHashedPassword() const;
 	const std::string& getEmail() const;
+	const std::string getFullName() const;
+	std::vector<Plan> getPlans();
 };
 #endif // !USER_HPP

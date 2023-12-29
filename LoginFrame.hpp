@@ -8,11 +8,13 @@ class LoginFrame : public wxFrame
 public:
 	wxPanel* m_parent;
 
+	bool loggedIn = false;
+
 	LoginFrame(const wxString& title);
 	void OnLogin(wxCommandEvent& event);
 	void OnClose(wxCloseEvent& event);
 private:
-	wxTextCtrl* usernameTextCtrl;
+	wxTextCtrl* emailTextCtrl;
 	wxTextCtrl* passwordTextCtrl;
 	wxButton* loginButton;
 };
