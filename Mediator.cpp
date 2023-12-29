@@ -31,12 +31,14 @@ void PlanUpdater::update(MainFrame* mF)
 void PlanUpdater::update(PlanFrame* pF)
 {
 	m_pF = pF;
+
 	int index;
 
 	if (m_pF->medsList->IsEmpty())
 		index = 0;
 	else
 		index = m_pF->medsList->GetSelection();
+
 	m_pF->medsList->Clear();
 
 	for (auto i : m_pF->m_plan.getMeds())
@@ -45,6 +47,7 @@ void PlanUpdater::update(PlanFrame* pF)
 	}
 
 	m_pF->medsList->SetSelection(index);
+
 	if (!m_pF->medsList->IsEmpty())
 	{
 		for (auto i : m_pF->m_plan.getMeds())

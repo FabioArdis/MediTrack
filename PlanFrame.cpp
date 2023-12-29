@@ -19,6 +19,17 @@ PlanFrame::PlanFrame(wxFrame* parent, const wxString& title, Plan& plan, PlanUpd
 	for (auto i : m_plan.getMeds())
 		a_medsName.Add(i->getInfo(MedInfo::NAME));
 
+	medsList = new wxListBox(m_parent, wxID_ANY, wxPoint(50, 50), wxSize(100, -1), a_medsName);
+	medsList->Bind(wxEVT_LISTBOX, &PlanFrame::OnListBoxSelection, this);
+
+	addMedBtn = new wxButton(m_parent, wxID_ANY, "Aggiungi medicinale", wxPoint(50, 100));
+	updatePlanBtn = new wxButton(m_parent, wxID_ANY, "Aggiorna il piano ed esci", wxPoint(50, 100));
+	updateMedBtn = new wxButton(m_parent, wxID_ANY, "Aggiorna farmaco", wxPoint(50, 100));
+
+	addMedBtn->Bind(wxEVT_BUTTON, &PlanFrame::OnClickAddMed, this);
+	updatePlanBtn->Bind(wxEVT_BUTTON, &PlanFrame::OnClickUpdPlan, this);
+	updateMedBtn->Bind(wxEVT_BUTTON, &PlanFrame::OnClickUpdMed, this);
+
 	planNameCtrl = new wxTextCtrl(m_parent, wxID_ANY, m_plan.getName(), wxPoint(50, 50));
 	planLengthCtrl = new wxTextCtrl(m_parent, wxID_ANY, m_plan.getLength(), wxPoint(50, 50));
 	planTypeCtrl = new wxTextCtrl(m_parent, wxID_ANY, m_plan.getType(), wxPoint(50, 50));
@@ -29,18 +40,6 @@ PlanFrame::PlanFrame(wxFrame* parent, const wxString& title, Plan& plan, PlanUpd
 	medBatchCtrl = new wxTextCtrl(m_parent, wxID_ANY, "Batch number", wxPoint(50, 50));
 	medExpCtrl = new wxTextCtrl(m_parent, wxID_ANY, "Expiration time", wxPoint(50, 50));
 	medNotesCtrl = new wxTextCtrl(m_parent, wxID_ANY, "Aggiungi delle note...", wxPoint(50, 50), wxDefaultSize, wxTE_MULTILINE);
-
-	medsList = new wxListBox(m_parent, wxID_ANY, wxPoint(50, 50), wxSize(100, -1), a_medsName);
-
-	medsList->Bind(wxEVT_LISTBOX, &PlanFrame::OnListBoxSelection, this);
-
-	addMedBtn = new wxButton(m_parent, wxID_ANY, "Aggiungi medicinale", wxPoint(50, 100));
-	updatePlanBtn = new wxButton(m_parent, wxID_ANY, "Aggiorna il piano ed esci", wxPoint(50, 100));
-
-	addMedBtn->Bind(wxEVT_BUTTON, &PlanFrame::OnClickAddMed, this);
-	updatePlanBtn->Bind(wxEVT_BUTTON, &PlanFrame::OnClickUpdPlan, this);
-	
-	updateMedBtn = new wxButton(m_parent, wxID_ANY, "Aggiorna farmaco", wxPoint(50, 100));
 
 	mainSizer->Add(medicineSizer, 1, wxEXPAND | wxALL, 5);
 	mainSizer->Add(new wxStaticLine(m_parent, wxID_ANY, wxPoint(25, 50), wxSize(1, 300)), 0, wxEXPAND | wxALL, 5);
@@ -81,13 +80,9 @@ PlanFrame::PlanFrame(wxFrame* parent, const wxString& title, Plan& plan, PlanUpd
 	infoSizer->Add(medNotesCtrl, 1, wxEXPAND | wxALL, 5);
 	infoSizer->Add(updateMedBtn, 0, wxEXPAND | wxALL, 5);
 
-	updateMedBtn->Bind(wxEVT_BUTTON, &PlanFrame::OnClickUpdMed, this);
-
 	m_parent->SetSizer(mainSizer);
 
 	this->Centre();
-
-
 }
 
 void PlanFrame::OnListBoxSelection(wxCommandEvent& event)
@@ -98,6 +93,7 @@ void PlanFrame::OnListBoxSelection(wxCommandEvent& event)
 void PlanFrame::OnClickAddMed(wxCommandEvent& event)
 {
 	Medicine* testMedicine = new Medicine();
+
 	m_plan.addMed(testMedicine);
 	m_mediator->update(this);
 }
@@ -107,7 +103,9 @@ void PlanFrame::OnClickUpdPlan(wxCommandEvent& event)
 	m_plan.setName(planNameCtrl->GetValue().ToStdString());
 	m_plan.setLength(planLengthCtrl->GetValue().ToStdString());
 	m_plan.setType(planTypeCtrl->GetValue().ToStdString());
+
 	m_mediator->update();
+
 	this->Hide();
 }
 

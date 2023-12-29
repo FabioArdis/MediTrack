@@ -48,7 +48,8 @@ ConfirmFormDialog::ConfirmFormDialog(wxWindow* parent, wxWindowID id, const wxSt
 {
     wxBoxSizer* sizer = new wxBoxSizer(wxVERTICAL);
 
-    wxStaticText* messageText = new wxStaticText(this, wxID_ANY, "Do you want to continue in the plan creation?", wxDefaultPosition, wxDefaultSize, wxALIGN_CENTRE);
+    wxStaticText* messageText = new wxStaticText(this, wxID_ANY, 
+        "Do you want to continue in the plan creation?", wxDefaultPosition, wxDefaultSize, wxALIGN_CENTRE);
     sizer->Add(messageText, 0, wxALL | wxEXPAND, 10);
 
     wxStdDialogButtonSizer* buttonSizer = CreateStdDialogButtonSizer(wxOK | wxCANCEL);

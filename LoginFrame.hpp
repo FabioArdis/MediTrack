@@ -11,11 +11,14 @@ public:
 	bool loggedIn = false;
 
 	LoginFrame(const wxString& title);
+
 	void OnLogin(wxCommandEvent& event);
 	void OnClose(wxCloseEvent& event);
+
 private:
 	wxTextCtrl* emailTextCtrl;
 	wxTextCtrl* passwordTextCtrl;
+
 	wxButton* loginButton;
 };
 

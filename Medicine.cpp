@@ -23,12 +23,7 @@ Medicine::Medicine(std::string name) : name(name)
 	notes = "Insert notes....";
 }
 
-void Medicine::setInfo(std::vector<std::string> data)
-{
-	/*
-	* a sto punto ha più senso usare un costruttore di copia, no?
-	*/
-}
+void Medicine::setInfo(std::vector<std::string> data) {}
 
 void Medicine::setInfo(MedInfo info, std::string data)
 {

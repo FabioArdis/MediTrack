@@ -18,8 +18,10 @@ class PlanUpdater : public Mediator
 private:
 	MainFrame* m_mF;
 	PlanFrame* m_pF;
+
 public:
 	PlanUpdater(MainFrame* mF, PlanFrame* pF) : m_mF(mF), m_pF(pF) {}
+
 	void update() override;
 	void update(MainFrame* mF);
 	void update(PlanFrame* pF);

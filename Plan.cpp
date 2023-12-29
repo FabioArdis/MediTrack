@@ -5,9 +5,11 @@ Plan::Plan()
 	name = "PlanName";
 	length = "PlanLength";
 	type = "PlanType";
+
 	if (meds.empty())
 	{
 		Medicine* testMedicine = new Medicine();
+
 		meds.push_back(testMedicine);
 	}
 }

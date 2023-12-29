@@ -9,11 +9,10 @@ MainFrame::MainFrame(const wxString& title) : wxFrame(NULL, wxID_ANY, title, wxD
 {
 	this->SetMinSize(wxSize(500, 300));
 	this->SetMaxSize(wxSize(500, 300));
-	m_parent = new wxPanel(this, wxID_ANY);
 
+	m_parent = new wxPanel(this, wxID_ANY);
 	m_plans = &m_user->plans;
 	wxArrayString a_plansName;
-
 	m_mediator = new PlanUpdater(this, m_planFrame);
 
 	for (auto i = m_plans->begin(); i != m_plans->end(); i++)
@@ -36,8 +35,6 @@ MainFrame::MainFrame(const wxString& title) : wxFrame(NULL, wxID_ANY, title, wxD
 	doctors.Add("Dottore1 - Specializzazione1");
 	doctors.Add("Dottore2 - Specializzazione2");
 	doctors.Add("Dottore3 - Specializzazione3");
-
-	std::string prova = "password";
 
 	mainSizer->Add(plansSizer, 1, wxEXPAND | wxALL, 5);
 	mainSizer->Add(new wxStaticLine(m_parent, wxID_ANY, wxPoint(25, 50), wxSize(1, 300)), 0, wxEXPAND | wxALL, 5);
@@ -78,7 +75,9 @@ void MainFrame::onAdd(wxCommandEvent& event)
 			std::string type = dialog.GetTypeValue();
 
 			Plan newPlan(name, length, type);
+
 			m_plans->push_back(newPlan);
+
 			m_mediator->update(this);
 
 			for (auto i = m_plans->begin(); i != m_plans->end(); i++)
@@ -97,18 +96,18 @@ void MainFrame::onAdd(wxCommandEvent& event)
 			std::string type = dialog.GetTypeValue();
 
 			Plan newPlan(name, length, type);
+
 			m_plans->push_back(newPlan);
+
 			m_mediator->update(this);
 		}
 	}
-	/*Plan newPlan("Nuovo Piano" + std::to_string(m_plans->size()));
-	m_plans->push_back(newPlan);*/
-	
 }
 
 void MainFrame::onEdit(wxCommandEvent& event)
 {
 	int index = plansList->GetSelection();
+
 	for (auto i = m_plans->begin(); i != m_plans->end(); i++)
 	{
 		if (i->getName() == plansList->GetString(index))

@@ -10,6 +10,7 @@ LoginFrame::LoginFrame(const wxString& title) : wxFrame(NULL, wxID_ANY, title, w
 {
 	this->SetMinSize(wxSize(300, 200));
 	this->SetMaxSize(wxSize(300, 200));
+
 	Bind(wxEVT_CLOSE_WINDOW, &LoginFrame::OnClose, this);
 
 	m_parent = new wxPanel(this, wxID_ANY);
@@ -46,8 +47,10 @@ void LoginFrame::OnLogin(wxCommandEvent& event)
 	if (check)
 	{
 		loggedIn = true;
+
 		wxCommandEvent newEvent(LOGIN_SUCCESS_EVENT);
 		wxPostEvent(wxTheApp, newEvent);
+
 		this->Close();
 	}
 	else

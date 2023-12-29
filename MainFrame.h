@@ -13,13 +13,10 @@ public:
 	MainFrame(const wxString& title);
 
 	wxPanel* m_parent;
-
-	User* m_user = UserDAO::getInstance()->getUser();
-
 	PlanFrame* m_planFrame;
-
 	wxListBox* plansList;
 
+	User* m_user = UserDAO::getInstance()->getUser();
 	PlanUpdater* m_mediator;
 
 	void onAdd(wxCommandEvent& event);
@@ -31,7 +28,6 @@ private:
 	wxButton* addButton;
 	wxButton* editButton;
 	wxButton* syncButton;
-
 };
 #endif // !MAINFRAME_HPP
 

@@ -7,14 +7,10 @@ wxIMPLEMENT_APP(MediTrack);
 
 bool MediTrack::OnInit()
 {
-	/*
-	* Implementare il login prima di far partire il mainFrame.
-	*/
 	loginFrame = new LoginFrame(wxT("Login"));
 	mainFrame = new MainFrame(wxT("MediTrack"));
 
 	loginFrame->Show(true);
-	//mainFrame->Show(true);
 
 	Bind(LOGIN_SUCCESS_EVENT, &MediTrack::OnLoginSuccess, this);
 

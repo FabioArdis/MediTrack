@@ -33,6 +33,5 @@ public:
 
 	std::vector<std::string> getInfo() const;
 	std::string getInfo(MedInfo info) const;
-
 };
 #endif // !MEDICINE_HPP

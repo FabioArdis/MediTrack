@@ -11,9 +11,7 @@ public:
 	PlanFrame(wxFrame* parent, const wxString& title, Plan& plan, PlanUpdater* mediator);
 
 	wxPanel* m_parent;
-
 	PlanUpdater* m_mediator;
-
 	Plan& m_plan;
 
 	wxListBox* medsList;

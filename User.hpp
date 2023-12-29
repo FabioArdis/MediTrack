@@ -16,8 +16,10 @@ private:
 public:
 	std::vector<Plan> plans;
 
-	User(const std::string& name, const std::string& surname, const std::string& email, const std::string& hashedPassword, const std::string& birthDate)
-		: id(UserDAO::getInstance()->getNextUserId()), name(name), surname(surname), email(email), hashedPassword(hashedPassword), birthDate(birthDate)
+	User(const std::string& name, const std::string& surname, 
+		const std::string& email, const std::string& hashedPassword, 
+		const std::string& birthDate) : id(UserDAO::getInstance()->getNextUserId()),
+		name(name), surname(surname), email(email), hashedPassword(hashedPassword), birthDate(birthDate)
 	{
 		this->registrationTime = std::chrono::system_clock::now();
 		this->lastAccess = std::chrono::system_clock::now();
@@ -25,10 +27,10 @@ public:
 
 	void Update();
 	void addPlan(Plan& plan);
+	std::vector<Plan> getPlans();
 
 	const std::string& getHashedPassword() const;
 	const std::string& getEmail() const;
 	const std::string getFullName() const;
-	std::vector<Plan> getPlans();
 };
 #endif // !USER_HPP

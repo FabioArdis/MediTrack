@@ -10,6 +10,7 @@ class Plan
 private:
 	std::string name, length, type;
 	std::vector<Medicine*> meds;
+
 public:
 	Plan();
 	Plan(std::string name);
@@ -20,6 +21,7 @@ public:
 	void setName(std::string name);
 	void setLength(std::string length);
 	void setType(std::string type);
+
 	std::string getName() const;
 	std::string getLength() const;
 	std::string getType() const;
